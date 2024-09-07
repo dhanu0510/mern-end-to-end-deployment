@@ -1,28 +1,4 @@
-e_policy = data.aws_iam_policy_document.eks_oidc_assume_role_policy.json
-  name               = "eks-oidc"
-}
-
-resource "aws_iam_policy" "eks-oidc-policy" {
-  name = "test-policy"
-
-  policy = jsonencode({
-    Statement = [{
-      Action = [
-        "s3:ListAllMyBuckets",
-        "s3:GetBucketLocation",
-        "*"
-      ]
-      Effect   = "Allow"
-      Resource = "*"
-    }]
-    Version = "2012-10-17"
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "eks-oidc-policy-attach" {
-  role       = aws_iam_role.eks_oidc.name
-  policy_arn = aws_iam_policy.eks-oidc-policy.arn
-}locals {
+locals {
   cluster_name = var.cluster-name
 }
 
@@ -94,4 +70,28 @@ resource "aws_iam_role_policy_attachment" "eks-AmazonEBSCSIDriverPolicy" {
 
 # OIDC
 resource "aws_iam_role" "eks_oidc" {
-  assume_rol
+  assume_role_policy = data.aws_iam_policy_document.eks_oidc_assume_role_policy.json
+  name               = "eks-oidc"
+}
+
+resource "aws_iam_policy" "eks-oidc-policy" {
+  name = "test-policy"
+
+  policy = jsonencode({
+    Statement = [{
+      Action = [
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation",
+        "*"
+      ]
+      Effect   = "Allow"
+      Resource = "*"
+    }]
+    Version = "2012-10-17"
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "eks-oidc-policy-attach" {
+  role       = aws_iam_role.eks_oidc.name
+  policy_arn = aws_iam_policy.eks-oidc-policy.arn
+}

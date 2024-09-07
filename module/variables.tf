@@ -1,20 +1,4 @@
-n" {}
-variable "endpoint-private-access" {}
-variable "endpoint-public-access" {}
-variable "addons" {
-  type = list(object({
-    name    = string
-    version = string
-  }))
-}
-variable "ondemand_instance_types" {}
-variable "spot_instance_types" {}
-variable "desired_capacity_on_demand" {}
-variable "min_capacity_on_demand" {}
-variable "max_capacity_on_demand" {}
-variable "desired_capacity_spot" {}
-variable "min_capacity_spot" {}
-variable "max_capacity_spot" {}variable "cluster-name" {}
+variable "cluster-name" {}
 variable "cidr-block" {}
 variable "vpc-name" {}
 variable "env" {}
@@ -51,4 +35,20 @@ variable "is_eks_nodegroup_role_enabled" {
 
 # EKS
 variable "is-eks-cluster-enabled" {}
-variable "cluster-versio
+variable "cluster-version" {}
+variable "endpoint-private-access" {}
+variable "endpoint-public-access" {}
+variable "addons" {
+  type = list(object({
+    name    = string
+    version = string
+  }))
+}
+variable "ondemand_instance_types" {}
+variable "spot_instance_types" {}
+variable "desired_capacity_on_demand" {}
+variable "min_capacity_on_demand" {}
+variable "max_capacity_on_demand" {}
+variable "desired_capacity_spot" {}
+variable "min_capacity_spot" {}
+variable "max_capacity_spot" {}
